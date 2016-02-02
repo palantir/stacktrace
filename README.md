@@ -31,6 +31,15 @@ Note that stack traces are *not designed to be user-visible*. We have found them
 to be valuable in log files of server applications. Nobody wants to see these in
 CLI output or a web interface or a return value from library code.
 
+## Intent
+
+The intent is *not* that we capture the exact state of the stack when an error
+happens, including every function call. For a library that does that, see
+[github.com/go-errors/errors](https://github.com/go-errors/errors). The intent
+here is to attach relevant contextual information (messages, variables) at
+strategic places along the call stack, keeping stack traces compact and
+maximally useful.
+
 ## Example Usage
 
 <!-- pre instead of code block to support bold text inside -->
