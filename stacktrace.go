@@ -147,7 +147,7 @@ GetCode extracts the error code from an error.
 		}
 		// try a few more times
 	}
-	return fmt.Errorf("timed out after %d attempts", attempts)
+	return stacktrace.NewError("timed out after %d attempts", attempts)
 
 GetCode returns the special value stacktrace.NoCode if err is nil or if there is
 no error code attached to err.
