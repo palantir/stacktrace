@@ -19,7 +19,24 @@ import (
 	"math"
 	"runtime"
 	"strings"
+
+	"github.com/palantir/stacktrace/cleanpath"
 )
+
+/*
+CleanPath function is applied to file paths before adding them to a stacktrace.
+By default, it makes the path relative to the $GOPATH environment variable.
+
+To remove some additional prefix like "github.com" from file paths in
+stacktraces, use something like:
+
+	stacktrace.CleanPath = func(path string) string {
+		path = cleanpath.RemoveGoPath(path)
+		path = strings.TrimPrefix(path, "github.com/")
+		return path
+	}
+*/
+var CleanPath func(path string) string = cleanpath.RemoveGoPath
 
 /*
 NewError is a drop-in replacement for fmt.Errorf that includes line number
@@ -185,8 +202,10 @@ func create(cause error, code ErrorCode, msg string, vals ...interface{}) error 
 	if !ok {
 		return err
 	}
-	err.file = trimFile(file)
-	err.line = line
+	if CleanPath != nil {
+		file = CleanPath(file)
+	}
+	err.file, err.line = file, line
 
 	f := runtime.FuncForPC(pc)
 	if f == nil {
@@ -195,15 +214,6 @@ func create(cause error, code ErrorCode, msg string, vals ...interface{}) error 
 	err.function = shortFuncName(f)
 
 	return err
-}
-
-/* Truncates everything before and including "/src/". */
-func trimFile(file string) string {
-	index := strings.LastIndex(file, "/src/")
-	if index == -1 {
-		return file
-	}
-	return file[index+len("/src/"):]
 }
 
 /* "FuncName" or "Receiver.MethodName" */
