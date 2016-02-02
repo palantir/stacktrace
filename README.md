@@ -171,7 +171,7 @@ for i := 0; i < attempts; i++ {
     }
     // try a few more times
 }
-return fmt.Errorf("timed out after %d attempts", attempts)
+return stacktrace.NewError("timed out after %d attempts", attempts)
 </pre>
 
 GetCode returns the special value `stacktrace.NoCode` if `err` is nil or if
