@@ -1,4 +1,4 @@
-# Stacktrace
+# Stacktrace [![Circle CI](https://img.shields.io/circleci/project/palantir/stacktrace.svg?label=circleci)](https://circleci.com/gh/palantir/stacktrace) [![Travis CI](https://img.shields.io/travis/palantir/stacktrace.svg?label=travis)](https://travis-ci.org/palantir/stacktrace)
 
 Look at Palantir, such a Java shop. I can't believe they want stack traces in
 their Go code.
