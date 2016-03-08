@@ -36,7 +36,7 @@ stacktraces, use something like:
 		return path
 	}
 */
-var CleanPath func(path string) string = cleanpath.RemoveGoPath
+var CleanPath = cleanpath.RemoveGoPath
 
 /*
 NewError is a drop-in replacement for fmt.Errorf that includes line number
