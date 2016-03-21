@@ -189,4 +189,4 @@ there is no error code attached to `err`.
 ## License
 
 Stacktrace is released by Palantir Technologies, Inc. under the Apache 2.0
-License. See the included LICENSE file for details.
+License. See the included [LICENSE](LICENSE) file for details.
