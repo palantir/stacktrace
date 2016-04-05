@@ -190,3 +190,13 @@ there is no error code attached to `err`.
 
 Stacktrace is released by Palantir Technologies, Inc. under the Apache 2.0
 License. See the included [LICENSE](LICENSE) file for details.
+
+## Contributing
+
+We welcome contributions of backward-compatible changes to this library.
+
+- Write your code
+- Add tests for new functionality
+- Run `go test` and verify that the tests pass
+- Fill out the [Individual](https://github.com/palantir/stacktrace/blob/master/Palantir_Individual_Contributor_License_Agreement.pdf?raw=true) or [Corporate](https://github.com/palantir/stacktrace/blob/master/Palantir_Corporate_Contributor_License_Agreement.pdf?raw=true) Contributor License Agreement and send it to [opensource@palantir.com](mailto:opensource@palantir.com)
+- Submit a pull request
