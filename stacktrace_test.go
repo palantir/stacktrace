@@ -16,6 +16,7 @@ package stacktrace_test
 
 import (
 	"errors"
+	"fmt"
 	"strings"
 	"testing"
 
@@ -45,7 +46,9 @@ func TestMessage(t *testing.T) {
 		"Caused by: failed to start doing",
 		" --- at github.com/palantir/stacktrace/functions_for_test.go:26 (startDoing) ---",
 	}, "\n")
+	stacktrace.DefaultFormat = stacktrace.FormatFull
 	assert.Equal(t, expected, err.Error())
+	assert.Equal(t, expected, fmt.Sprint(err))
 }
 
 func TestGetCode(t *testing.T) {

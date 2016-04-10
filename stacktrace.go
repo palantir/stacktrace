@@ -236,28 +236,5 @@ func shortFuncName(f *runtime.Func) string {
 }
 
 func (st *stacktrace) Error() string {
-	str := st.message
-
-	if st.file != "" {
-		if str != "" {
-			str += "\n"
-		}
-		if st.function == "" {
-			str += fmt.Sprintf(" --- at %v:%v ---", st.file, st.line)
-		} else {
-			str += fmt.Sprintf(" --- at %v:%v (%v) ---", st.file, st.line, st.function)
-		}
-	}
-
-	if st.cause != nil {
-		if str != "" {
-			str += "\n"
-		}
-		if cause, ok := st.cause.(*stacktrace); !ok || cause.message != "" {
-			str += "Caused by: "
-		}
-		str += st.cause.Error()
-	}
-
-	return str
+	return fmt.Sprint(st)
 }
