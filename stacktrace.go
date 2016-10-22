@@ -238,3 +238,12 @@ func shortFuncName(f *runtime.Func) string {
 func (st *stacktrace) Error() string {
 	return fmt.Sprint(st)
 }
+
+// ExitCode returns the exit code associated with the stacktrace error based on its error code. If the error code is
+// NoCode, return 1 (default); otherwise, returns the value of the error code.
+func (st *stacktrace) ExitCode() int {
+	if st.code == NoCode {
+		return 1
+	}
+	return int(st.code)
+}
