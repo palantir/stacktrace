@@ -46,3 +46,37 @@ func TestRootCause(t *testing.T) {
 		assert.Equal(t, test.rootCause, stacktrace.RootCause(test.err))
 	}
 }
+
+func TestRootMessage(t *testing.T) {
+	for _, test := range []struct {
+		message string
+		err     error
+	}{
+		{
+			message: "",
+			err:     nil,
+		},
+		{
+			message: "",
+			err:     customError("msg"),
+		},
+		{
+			message: "",
+			err:     errors.New("msg"),
+		},
+		{
+			message: "msg",
+			err:     stacktrace.NewError("msg"),
+		},
+		{
+			message: "msg2",
+			err:     stacktrace.Propagate(customError("msg1"), "msg2"),
+		},
+		{
+			message: "msg2",
+			err:     stacktrace.Propagate(errors.New("msg1"), "msg2"),
+		},
+	} {
+		assert.Equal(t, test.message, stacktrace.RootMessage(test.err))
+	}
+}
