@@ -247,3 +247,8 @@ func (st *stacktrace) ExitCode() int {
 	}
 	return int(st.code)
 }
+
+// Unwrap implements Go 1.13 error unwrapping
+func (st *stacktrace) Unwrap() error {
+	return RootCause(st)
+}
