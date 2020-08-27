@@ -98,3 +98,8 @@ func TestPropagateNil(t *testing.T) {
 
 	assert.Equal(t, stacktrace.NoCode, stacktrace.GetCode(err))
 }
+
+func TestUnwrap(t *testing.T) {
+	err := errors.New("cause")
+	assert.Equal(t, err, unwrap(stacktrace.Propagate(err, "propagated")))
+}

@@ -247,3 +247,8 @@ func (st *stacktrace) ExitCode() int {
 	}
 	return int(st.code)
 }
+
+// Unwrap returns the cause of st.
+func (st *stacktrace) Unwrap() error {
+	return st.cause
+}
