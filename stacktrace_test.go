@@ -100,13 +100,6 @@ func TestPropagateNil(t *testing.T) {
 }
 
 func TestUnwrap(t *testing.T) {
-	st := &stacktrace{}
-	assert.Nil(t, st.Unwrap())
-
 	err := errors.New("cause")
-	st.cause = err
-	assert.Equal(t, err, st.Unwrap())
-
-	st = Propagate(err, "propagated")
-	assert.Equal(t, err, st.Unwrap())
+	assert.Equal(t, err, unwrap(stacktrace.Propagate(err, "propagated")))
 }
